@@ -1,0 +1,30 @@
+<BulletStep Number="@Data.NextBullet()">
+    <Title>
+        Add a new repository
+    </Title>
+    <Content>
+        <Bullet>
+            <ImagePreview Article=@Data
+                          ImageFile="step-01.png"
+                          Size=(936,941,0.1)
+                          CssClass="table-cell" />
+            <span class="image-caption image-on-left">
+                From your GitHub profile or dashboard page, click the button to add a new repository.
+            </span>
+        </Bullet>
+        <Bullet>
+            <span class="image-caption image-on-right">
+                From your GitHub profile or dashboard page, click the button to add a new repository.
+            </span>
+            <ImagePreview Article=@Data
+                          ImageFile="step-01.png"
+                          Size=(936,941,0.1)
+                          CssClass="table-cell" />
+        </Bullet>
+    </Content>
+</BulletStep>
+
+@code {
+    [Parameter]
+    public required ArticleData Data { get; set; }
+}

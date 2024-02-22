@@ -1,0 +1,25 @@
+﻿@*
+    AppLayout.razor
+*@
+
+@inherits LayoutComponentBase
+@inject IJSRuntime JSRuntime
+
+<Header />
+
+<main>
+    @Body
+</main>
+
+<footer></footer>
+
+@code {
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (!firstRender)
+        {
+            return;
+        }
+        await JSRuntime.InvokeVoidAsync("bbjs.startup");
+    }
+}

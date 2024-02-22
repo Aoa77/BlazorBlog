@@ -1,0 +1,10 @@
+﻿@*
+    ArticleFeed.razor  [PAGE]
+*@
+@page "/"
+
+@foreach (var article in BlogManager.Articles.Values)
+{
+    <ArticleSummary Data="@article" />
+}
+

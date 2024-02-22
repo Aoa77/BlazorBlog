@@ -1,0 +1,51 @@
+﻿@*
+    <BulletStep Number="[int]">
+        <Title>
+            <!-- ChildContent [RenderFragment] -->
+        </Title>
+        <Content>
+            <!-- ChildContent [RenderFragment] -->
+        </Content>
+    </BulletStep>
+*@
+
+@if (Number == 1)
+{
+    <step-spacer-half>&nbsp;</step-spacer-half>
+}
+else
+{
+    <step-spacer>&nbsp;</step-spacer>
+}
+
+<step-container>
+    <step-wrap>
+        <step-num class="font-play-bold">
+            <span class="@labelClass()">
+                @Number
+            </span>
+        </step-num>
+    </step-wrap>
+    <step-title class="font-play-regular">@Title</step-title>
+</step-container>
+
+<content-fragment>
+    @Content
+</content-fragment>
+
+@code {
+
+    private string labelClass()
+    {
+        return $"circle-{Number.ToString().Length}-digit";
+    }
+
+    [Parameter]
+    public int Number { get; set; }
+
+    [Parameter]
+    public required RenderFragment Title { get; set; }
+
+    [Parameter]
+    public required RenderFragment Content { get; set; }
+}

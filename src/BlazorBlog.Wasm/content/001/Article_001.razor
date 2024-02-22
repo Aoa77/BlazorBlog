@@ -1,0 +1,27 @@
+﻿@inherits ArticleData
+
+<ArticleView Data="@this">
+    <p>
+        GitHub template repositories can make life easier when starting new projects.
+    </p>
+    <p>
+        In this tutorial, we'll create a template repo for Visual Studio 2022 projets with a predefined directory structure and example placeholders for common configuration files.
+    </p>
+
+    <Article_001_Step_01 Data="@this" />
+
+</ArticleView>
+
+@code {
+    public override void Setup()
+    {
+        base.InitializeParameters
+        ("001", new(2024, 1, 15),
+        "How to create a GitHub template repository for Visual Studio 2022 projects");
+    }
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        Setup();
+    }
+}

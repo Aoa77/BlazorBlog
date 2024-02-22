@@ -1,0 +1,24 @@
+<BulletStep Number="@Data.NextBullet()">
+    <Title>
+        Confirm that the new project templates are available.
+    </Title>
+    <Content>
+        <Bullet>
+            Launch Visual Studio 2022.
+        </Bullet>
+        <Bullet>
+            In the <b>Get started</b> window, select <b>Create a new project</b>.
+        </Bullet>
+        <Bullet>
+            Use the <b>Search for templates</b> input to confirm the availability of new project templates for Angular, React, and Vue.
+            <ImagePreview Article=@Data
+                          ImageFile="vs2022-new-project-01.gif"
+                          Size=(931,720,0.7) />
+        </Bullet>
+    </Content>
+</BulletStep>
+
+@code {
+    [Parameter]
+    public required ArticleData Data { get; set; }
+}

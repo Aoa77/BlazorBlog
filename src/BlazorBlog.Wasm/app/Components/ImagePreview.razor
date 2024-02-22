@@ -1,0 +1,72 @@
+﻿@*
+    <ImagePreview
+        Article=[ArticleData?=null]
+        ImageFile="[string]"
+        ImagePath="[string?=null]"
+        Size=[(int Width, int Height, double MaxWidthViewRatio)]   />
+*@
+@inject IJSRuntime JS
+
+<img-preview class="@CssClass">
+    <a target="_image"
+       href="@_src">
+
+        <img src="@_src"
+             width="@_width"
+             height="@_height"
+             data-resize="@_resize" />
+    </a>
+</img-preview>
+
+@code {
+    private string _src = null!;
+    private string _resize = null!;
+    private int _width = 0;
+    private int _height = 0;
+
+    [Parameter] public ArticleData? Article { get; set; } = null;
+    [Parameter] public string? CssClass { get; set; }
+    [Parameter] public required string ImageFile { get; set; } = "";
+    [Parameter] public string? ImagePath { get; set; } = null;
+
+    [Parameter]
+    public required
+    (int Width, int Height, double MaxWidthViewRatio)
+    Size
+    { get; set; }
+
+    protected override void OnInitialized()
+    {
+        if (ImagePath is null && Article is not null)
+        {
+            ImagePath = Article.ContentPath;
+        }
+        if (ImagePath is null)
+        {
+            throw new ArgumentNullException(nameof(ImagePath));
+        }
+        _src = $@"/{ImagePath.Trim('/')}/{ImageFile.Trim('/')}";
+        _resize = JsonSerializer.Serialize(new
+        {
+            Size.Width,
+            Size.Height,
+            Size.MaxWidthViewRatio
+        });
+        Console.WriteLine($"ImagePreview: {_resize}");
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (!firstRender)
+        {
+            return;
+        }
+        double maxWidth = Size.MaxWidthViewRatio 
+                        * await JS.InvokeAsync<int>("bbjs.getViewWidth");
+        double ratio = maxWidth / Size.Width;
+        _width = Convert.ToInt32(Size.Width * ratio);
+        _height = Convert.ToInt32(Size.Height * ratio);
+        StateHasChanged();
+    }
+
+}

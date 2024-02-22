@@ -1,0 +1,24 @@
+<BulletStep Number="@Data.NextBullet()">
+    <Title>
+        Install the Node.js development workload.
+    </Title>
+    <Content>
+        <Bullet>
+            In the <b>Modifying</b> window, find the <b>Web &amp; Cloud</b> section under the <b>Workloads</b> tab.
+        </Bullet>
+        <Bullet>
+            Select the checkbox for <b>Node.js development</b> and click the <b>Modify</b> button to install the workload.
+        </Bullet>
+        <Bullet>
+            Go ahead and close the installer once it has finished installing the Node.js workload.
+            <ImagePreview Article=@Data
+                          ImageFile="vs2022-installer-02.gif"
+                          Size=(1858,893,0.7) />
+        </Bullet>
+    </Content>
+</BulletStep>
+
+@code {
+    [Parameter]
+    public required ArticleData Data { get; set; }
+}

@@ -1,0 +1,38 @@
+﻿@inherits ArticleData
+
+<ArticleView Data="@this">
+    <p>
+        Visual Studio 2022 has quick-start project templates for popular frontend web UI frameworks including
+        <JsFrameworkLinks />.
+    </p>
+    <p>
+        Visual Studio relies on
+        <a class="dim" target="_external" href="https://nodejs.org/">Node.js</a>
+        and
+        <a class="dim" target="_external" href="https://www.npmjs.com/">NPM</a>
+        to provide the code scaffolding and tools necessary to build and run web applications with these frameworks.
+    </p>
+    <p>
+        Follow these steps to access these project templates within Visual Studio 2022.
+    </p>
+
+    <Step_01 Data="@this" />
+    <Step_02 Data="@this" />
+    <Step_03 Data="@this" />
+    <Step_04 Data="@this" />
+
+</ArticleView>
+
+@code {
+    public override void Setup()
+    {
+        base.InitializeParameters
+        ("000", new(2024, 1, 10), 
+        "Visual Studio 2022 project templates for Angular, React, and Vue");
+    }
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        Setup();
+    }
+}

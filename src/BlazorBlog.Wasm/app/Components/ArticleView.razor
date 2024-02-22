@@ -1,0 +1,24 @@
+﻿@*
+    <ArticleView Data="[ArticleData]">
+        <!-- ChildContent [RenderFragment] -->
+    </ArticleView>
+*@
+<article>
+    <time class="font-c64 scan-0">
+        @Data.PostDateFmt
+    </time>
+    <h1 class="font-play-regular">
+        @Data.Title
+    </h1>
+    <section class="font-roboto-regular">
+        @ChildContent
+    </section>
+</article>
+
+@code {
+    [Parameter]
+    public required ArticleData Data { get; set; }
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+}

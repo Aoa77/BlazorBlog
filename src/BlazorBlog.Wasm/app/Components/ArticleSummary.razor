@@ -1,0 +1,17 @@
+﻿@*
+    <ArticleSummary Data="[ArticleData]" />
+*@
+
+<a class="article dim" href="@Data.ArticlePath">
+    <h1 class="font-roboto-regular">
+        @Data.Title
+    </h1>
+    <time class="font-play-bold">
+        @Data.PostDateFmt
+    </time>
+</a>
+
+@code {
+    [Parameter]
+    public required ArticleData Data { get; set; }
+}

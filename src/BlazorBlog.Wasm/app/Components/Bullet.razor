@@ -1,0 +1,24 @@
+﻿@*
+    <Bullet Data="[ArticleData]">
+        <!-- ChildContent [RenderFragment] -->
+    </Bullet>
+*@
+
+<bullet-container class="@CssClass">
+    <bullet-wrap>
+        <bullet-point />
+    </bullet-wrap>
+
+    <bullet-content>
+        @ChildContent
+    </bullet-content>
+
+</bullet-container>
+
+@code {
+    [Parameter]
+    public required RenderFragment ChildContent { get; set; }
+
+    [Parameter]
+    public string? CssClass { get; set; }
+}
