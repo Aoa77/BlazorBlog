@@ -1,6 +1,6 @@
 ﻿header {
     background-color: #161718;
-    border-bottom-color: #26143a;
+    border-bottom-color: var(--dark_purple);
     border-bottom-width: var(--header_bottom_border_height);
     display: flex;
     height: var(--header_total_height);
@@ -19,15 +19,15 @@
     }
 
     header > header-logo {
-        font-size: 0.90rem;
+        font-size: 1.2rem;
         text-align: left;
         vertical-align: bottom;
     }
 
-        header > header-logo > a {
+        /*header > header-logo > a {
             color: #00ff00;
             opacity: 1;
-        }
+        }*/
 
     header > header-social {
         text-align: right;

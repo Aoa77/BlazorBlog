@@ -5,6 +5,16 @@
 
 @foreach (var article in BlogManager.Articles.Values)
 {
-    <FeedView Article="@article" />
+    <div style="@StripeColor()">
+        <FeedView Article="@article" />
+    </div>
 }
 
+@code {
+    private int _index = 0;
+    private string StripeColor()
+    {
+        string color = ++_index % 2 == 0 ? "even" : "odd";
+        return $@"background-color: var(--{color}_background)";
+    }
+}

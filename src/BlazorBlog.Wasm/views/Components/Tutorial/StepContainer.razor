@@ -3,40 +3,48 @@
 *@
 @inherits ParentComponent
 
-@if (Number == 1)
-{
-    <step-spacer-half>&nbsp;</step-spacer-half>
-}
-else
-{
-    <step-spacer>&nbsp;</step-spacer>
-}
+<step-stripe class="@_oddOrEven">
 
-<step-container>
-    <step-wrap>
-        <step-num class="font-play-bold">
-            <span class="@labelClass()">
-                @Number
-            </span>
-        </step-num>
-    </step-wrap>
-    <step-title class="font-play-regular">@Title</step-title>
-</step-container>
+    @if (Number == 1)
+    {
+        <step-spacer-half>&nbsp;</step-spacer-half>
+    }
+    else
+    {
+        <step-spacer>&nbsp;</step-spacer>
+    }
 
-<content-fragment>
-    @ChildContent
-</content-fragment>
+    <step-container>
+        <step-wrap>
+            <step-num class="font-play-bold">
+                <span class="@_labelClass">
+                    @Number
+                </span>
+            </step-num>
+        </step-wrap>
+        <step-title class="font-play-regular">@Title</step-title>
+    </step-container>
+
+    <content-fragment>
+        @ChildContent
+    </content-fragment>
+</step-stripe>
 
 @code {
+    private string _labelClass = "";
+    private string _oddOrEven = "odd";
 
-    private string labelClass()
-    {
-        return $"circle-{Number.ToString().Length}-digit";
-    }
 
     [Parameter]
     public int Number { get; set; }
 
     [Parameter]
     public RenderFragment? Title { get; set; }
-}
+
+    protected override void OnInitialized()
+    {
+        _labelClass = $"circle-{Number.ToString().Length}-digit";
+        _oddOrEven = (Number % 2 == 0) ? "even" : "odd";
+    }
+
+    }

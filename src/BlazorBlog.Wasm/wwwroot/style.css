@@ -2,11 +2,15 @@
     --embedded_media_image_link_border: 0.24rem;
     --h1_background: #402262;
     --header_base_height: 3.00rem;
-    --header_bottom_border_height: 0.42rem;
+    --header_bottom_border_height: 0.67rem;
     --header_total_height: calc(var(--header_base_height) + var(--header_bottom_border_height));
     --link_opacity: 0.70;
     --max_width: 64rem;
     --view_background: #050607;
+    --odd_background: #000022;
+    --even_background: #000011;
+    --dark_purple: #26143a;
+    --header_gray: #161718;
 }
 
 * {
@@ -36,6 +40,15 @@ body {
 
 header, main, footer {
     opacity: 0;
+}
+
+intro-text {
+    display: block;
+    color: #cdcdcd;
+    font-size: 1.2rem;
+    background-color: var(--even_background);
+    padding: 3rem;
+    margin: -1rem;
 }
 
 p {
@@ -80,28 +93,8 @@ b {
     display: none;
 }
 
-
-.font-c64 {
-    font-family: "Sixtyfour", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 400 !important;
-    font-style: normal;
-    font-variation-settings: "BLED" 0, "SCAN" -23;
-}
-
-    .font-c64.scan-0 {
-        font-variation-settings: "BLED" 0, "SCAN" 0;
-    }
-
-a.font-c64:hover {
-    font-variation-settings: "BLED" 0, "SCAN" 0;
-}
-
-.font-oswald {
-    font-family: "Oswald", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 300 !important;
-    font-style: normal;
+*.font-c64 {
+    font-family: 'Commodore 64 Pixelized', sans-serif;
 }
 
 .font-play-regular {

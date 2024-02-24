@@ -7,8 +7,8 @@ embedded-media.media-image > video {
 }
 
 embedded-media.media-image > a {
-    background-color: #005500;
-    border-color: #005500;
+    background-color: #002300;
+    border-color: #002300;
     border-width: var(--embedded_media_image_link_border);
     opacity: 1;
     display: block;

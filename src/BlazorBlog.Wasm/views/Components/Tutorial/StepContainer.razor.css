@@ -1,21 +1,32 @@
-﻿step-container {
+﻿step-stripe  {
+    background-color: var(--odd_background);
+    display:block;
+    padding: 2rem 2rem 3rem 2rem;
+    margin: -1rem;
+}
+
+step-stripe.even {
+    background-color: var(--even_background);
+}
+
+step-container {
     border-width: 1px;
     border-color: transparent;
     display: table;
-    margin: 0 1.35rem 1rem 0;
+    padding: 0 1.35rem 1rem 0;
 }
 
     step-container > step-wrap {
-        display: table-cell;
+        /*display: flex;*/
     }
 
         step-container > step-wrap > step-num {
             background-color: #0000aa;
-            border-color: #26143a;
+            border-color: var(--dark_purple);
             border-radius: 100%;
             border-width: 0.0625rem;
             color: #ffff00;
-            display: inline-block;
+            display: block;
             font-size: 1.0rem;
             margin: 0 0.5rem 0 0;
             padding: 0.52rem 0 0 0;
@@ -32,13 +43,13 @@
     }
 
 step-spacer {
-    display: block;
+    display: none;
     font-size: 1.00rem;
     height: 2rem;
 }
 
 step-spacer-half {
-    display: block;
+    display: none;
     font-size: 1.00rem;
     height: 1rem;
 }
