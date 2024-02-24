@@ -16,9 +16,9 @@
             border-radius: 100%;
             border-width: 0.0625rem;
             display: inline-block;
-            margin: 0 var(--bullet_margin);
-            height: 0.55rem;
-            width: 0.55rem;
+            margin: 0 1rem 0 0;  
+            height: 0.68rem;
+            width: 0.68rem;
         }
 
     bullet-container > bullet-content {

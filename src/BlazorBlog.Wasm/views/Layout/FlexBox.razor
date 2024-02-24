@@ -9,10 +9,10 @@
 </flex-box>
 
 @code {
-    private string _display = FlexSizer.DisplayStyle.flex;
+    private string _display = DisplayStyle.flex;
     private FlexSizer? _flexSizer = null!;
 
-    [Parameter] public int? MinimumFlexWidth { get; set; }
+    [Parameter] public double? MinimumFlexWidth { get; set; }
 
     protected override void OnInitialized()
     {
@@ -20,7 +20,6 @@
         {
             _flexSizer = new() { MinimumFlexWidth = MinimumFlexWidth.Value };
         }
-        Console.WriteLine(_flexSizer.ToJson());
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
@@ -34,12 +33,10 @@
             return;
         }
         var viewWidth = await JS.GetViewWidth();
-        Console.WriteLine($"View Width: {viewWidth}");
         if (viewWidth < _flexSizer.MinimumFlexWidth)
         {
-            _display = FlexSizer.DisplayStyle.block;
+            _display = DisplayStyle.block;
             StateHasChanged();
-            Console.WriteLine($"Display: {_display}");
         }
     }
 }

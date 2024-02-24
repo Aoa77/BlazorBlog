@@ -7,11 +7,19 @@ embedded-media.media-image > video {
 }
 
 embedded-media.media-image > a {
+    background-color: #005500;
     border-color: #005500;
-    border-width: 0.0625rem;
+    border-width: var(--embedded_media_image_link_border);
     opacity: 1;
+    display: block;
+    margin: 0 1rem 1rem 0;
 }
 
     embedded-media.media-image > a:hover {
+        background-color: #00ff00;
         border-color: #00ff00;
+    }
+
+    embedded-media.media-image > a > img {
+        display: block;
     }

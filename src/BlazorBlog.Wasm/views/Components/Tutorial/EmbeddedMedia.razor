@@ -1,21 +1,14 @@
 ﻿@*
-    <EmbeddedMedia
-        Article=[BlogArticle?=null]
-        MediaFile="[string]"
-        MediaPath="[string?=null]"
-        MediaSize=[MediaSize]   />
-                <EmbeddedMedia Article  ="@Data"
-                               MediaFile="vs2022-installer-00.png"
-                               Width    ="427"
-                               Height   ="122"
-                               Scale    ="0.5" />
+    <EmbeddedMedia /> is a component that displays an image or video with a link to the media file.
 *@
 @inherits BlogArticleChild
 @inject IJSRuntime JS
 
 <embedded-media class="@CssClass">
+
     <a target="_image"
-       href="@_src">
+       href="@_src"
+       style="@_aStyle">
 
         <img src="@_src"
              width="@_width"
@@ -29,15 +22,18 @@
            data-size="@_mediaSize.ToJson()"
            data-flex="@_flexSizer?.ToJson()"
            controls>
+
         <source src="@_src" type="video/mp4" />
         Your browser does not support the video tag.
     </video>
 </embedded-media>
 
 @code {
+    private bool _isVideo = false;
+    private string _aStyle = "";
     private string _src = null!;
-    private int _width = 0;
-    private int _height = 0;
+    private double _width = 0;
+    private double _height = 0;
     private MediaSize _mediaSize = null!;
     private FlexSizer? _flexSizer = null;
 
@@ -45,11 +41,11 @@
     [Parameter] public required string MediaFile { get; set; } = "";
     [Parameter] public string? MediaPath { get; set; } = null;
     [Parameter] public string? MediaType { get; set; } = null;
-    [Parameter] public int Width { get; set; } = 25;
-    [Parameter] public int Height { get; set; } = 25;
+    [Parameter] public double Width { get; set; } = 25;
+    [Parameter] public double Height { get; set; } = 25;
     [Parameter] public double Scale { get; set; } = 1.0;
     [Parameter] public double? AltFlexScale { get; set; }
-    [Parameter] public int? MinimumFlexWidth { get; set; }
+    [Parameter] public double? MinimumFlexWidth { get; set; }
 
     protected override void OnInitialized()
     {
@@ -63,8 +59,8 @@
             throw new ArgumentNullException(nameof(MediaPath));
         }
 
-        MediaType = MediaFile.EndsWith(".mp4")
-        ? "media-video" : "media-image";
+        _isVideo = MediaFile.EndsWith(".mp4");
+        MediaType = _isVideo ? "media-video" : "media-image";
 
         CssClass = $"{MediaType} {CssClass}";
 
@@ -95,10 +91,26 @@
             }
         }
 
-        var maxWidth = scale * viewWidth; 
+        var maxWidth = scale * viewWidth;
         var ratio = maxWidth / _mediaSize.Width;
-        _width = Convert.ToInt32(_mediaSize.Width * ratio);
-        _height = Convert.ToInt32(_mediaSize.Height * ratio);
+
+        _width = _mediaSize.Width * ratio;
+        _height = _mediaSize.Height * ratio;
+
+        if (!_isVideo)
+        {
+            var aWidth = _width;
+            var aHeight = _height;
+
+            var borderRem = await JS.GetRootVariable("--embedded_media_image_link_border");
+            var borderPx = 2 * (await JS.ConvertRemToPixels(borderRem));
+
+            aWidth += borderPx;
+            aHeight += borderPx;
+
+            _aStyle = $@"width: {aWidth}px; height: {aHeight}px;";
+        }
+
         StateHasChanged();
     }
 

@@ -5,21 +5,28 @@
         Confirm that the new project templates are available.
     </Title>
     <ChildContent>
-        <Bullet>
-            Launch Visual Studio 2022.
-        </Bullet>
-        <Bullet>
-            In the <b>Get started</b> window, select <b>Create a new project</b>.
-        </Bullet>
-        <Bullet>
-            Use the <b>Search for templates</b> input to confirm the availability of new project templates for Angular, React, and Vue.
+        <FlexBox MinimumFlexWidth="@DeviceWidth.iPhone678">
+            
+            <BulletList>
+                <Bullet>
+                    Launch Visual Studio 2022.
+                </Bullet>
+                <Bullet>
+                    In the <b>Get started</b> window, select <b>Create a new project</b>.
+                </Bullet>
+                <Bullet>
+                    Use the <b>Search for templates</b> input to confirm the availability of new project templates for <JsFrameworkLinks />.
+                </Bullet>
+            </BulletList>
 
-            <EmbeddedMedia Article="@Article"
-                           MediaFile="vs2022-new-project-01.gif"
-                           Width="931"
-                           Height="720"
-                           Scale="0.7" />
-        </Bullet>
+            <EmbeddedMedia Article          ="@Article"
+                           MediaFile        ="vs2022-new-project-01.gif"
+                           Width            ="931"
+                           Height           ="720"
+                           Scale            ="0.3"
+                           MinimumFlexWidth ="@DeviceWidth.iPhone678"
+                           AltFlexScale     ="0.7" />
+        </FlexBox>
     </ChildContent>
 </StepContainer>
 
