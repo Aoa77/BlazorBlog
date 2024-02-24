@@ -38,7 +38,6 @@ header, main, footer {
     opacity: 0;
 }
 
-
 p {
     margin: 0 0 1rem 0;
 }
@@ -63,19 +62,6 @@ b {
     b:hover {
         background-color: #000000;
         opacity: 1;
-    }
-
-span.image-caption {
-    display: table-cell;
-    vertical-align: top;
-}
-
-    span.image-caption.image-on-left {
-        padding-left: var(--bullet_margin);
-    }
-
-    span.image-caption.image-on-right {
-        padding-right: var(--bullet_margin);
     }
 
 .blazor-loading {

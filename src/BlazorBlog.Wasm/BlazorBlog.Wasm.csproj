@@ -17,14 +17,16 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="app\Layout\AppLayout.razor.css" />
-    <None Remove="app\Layout\Header.razor.css" />
-    <None Remove="app\Pages\ArticleFeed.razor.css" />
+    <None Remove="views\Layout\AppLayout.razor.css" />
+    <None Remove="views\Layout\FlexBox.razor.css" />
+    <None Remove="views\Layout\Header.razor.css" />
+    <None Remove="views\Pages\ArticleFeed.razor.css" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="app\Layout\AppLayout.razor.css" />
-    <Content Include="app\Layout\Header.razor.css" />
+    <Content Include="views\Layout\AppLayout.razor.css" />
+    <Content Include="views\Layout\FlexBox.razor.css" />
+    <Content Include="views\Layout\Header.razor.css" />
   </ItemGroup>
 
   <ItemGroup>

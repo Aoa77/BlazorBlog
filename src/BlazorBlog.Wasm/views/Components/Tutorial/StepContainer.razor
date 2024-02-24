@@ -1,13 +1,7 @@
 ﻿@*
-    <BulletStep Number="[int]">
-        <Title>
-            <!-- ChildContent [RenderFragment] -->
-        </Title>
-        <Content>
-            <!-- ChildContent [RenderFragment] -->
-        </Content>
-    </BulletStep>
+    <StepContainer /> is a component that displays a step number and title, and wraps the content of a step in a container.
 *@
+@inherits ParentComponent
 
 @if (Number == 1)
 {
@@ -30,7 +24,7 @@ else
 </step-container>
 
 <content-fragment>
-    @Content
+    @ChildContent
 </content-fragment>
 
 @code {
@@ -44,8 +38,5 @@ else
     public int Number { get; set; }
 
     [Parameter]
-    public required RenderFragment Title { get; set; }
-
-    [Parameter]
-    public required RenderFragment Content { get; set; }
+    public RenderFragment? Title { get; set; }
 }

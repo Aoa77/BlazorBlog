@@ -3,7 +3,7 @@
 *@
 
 @inherits LayoutComponentBase
-@inject IJSRuntime JSRuntime
+@inject IJSRuntime JS
 
 <Header />
 
@@ -20,6 +20,6 @@
         {
             return;
         }
-        await JSRuntime.InvokeVoidAsync("bbjs.startup");
+        await JS.Startup();
     }
 }

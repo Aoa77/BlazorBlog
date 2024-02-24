@@ -1,0 +1,105 @@
+﻿@*
+    <EmbeddedMedia
+        Article=[BlogArticle?=null]
+        MediaFile="[string]"
+        MediaPath="[string?=null]"
+        MediaSize=[MediaSize]   />
+                <EmbeddedMedia Article  ="@Data"
+                               MediaFile="vs2022-installer-00.png"
+                               Width    ="427"
+                               Height   ="122"
+                               Scale    ="0.5" />
+*@
+@inherits BlogArticleChild
+@inject IJSRuntime JS
+
+<embedded-media class="@CssClass">
+    <a target="_image"
+       href="@_src">
+
+        <img src="@_src"
+             width="@_width"
+             height="@_height"
+             data-size="@_mediaSize.ToJson()"
+             data-flex="@_flexSizer?.ToJson()" />
+    </a>
+
+    <video width="@_width"
+           height="@_height"
+           data-size="@_mediaSize.ToJson()"
+           data-flex="@_flexSizer?.ToJson()"
+           controls>
+        <source src="@_src" type="video/mp4" />
+        Your browser does not support the video tag.
+    </video>
+</embedded-media>
+
+@code {
+    private string _src = null!;
+    private int _width = 0;
+    private int _height = 0;
+    private MediaSize _mediaSize = null!;
+    private FlexSizer? _flexSizer = null;
+
+    [Parameter] public string? CssClass { get; set; }
+    [Parameter] public required string MediaFile { get; set; } = "";
+    [Parameter] public string? MediaPath { get; set; } = null;
+    [Parameter] public string? MediaType { get; set; } = null;
+    [Parameter] public int Width { get; set; } = 25;
+    [Parameter] public int Height { get; set; } = 25;
+    [Parameter] public double Scale { get; set; } = 1.0;
+    [Parameter] public double? AltFlexScale { get; set; }
+    [Parameter] public int? MinimumFlexWidth { get; set; }
+
+    protected override void OnInitialized()
+    {
+        if (MediaPath is null && Article is not null)
+        {
+            MediaPath = Article.ContentPath;
+        }
+
+        if (MediaPath is null)
+        {
+            throw new ArgumentNullException(nameof(MediaPath));
+        }
+
+        MediaType = MediaFile.EndsWith(".mp4")
+        ? "media-video" : "media-image";
+
+        CssClass = $"{MediaType} {CssClass}";
+
+        _src = $@"/{MediaPath.Trim('/')}/{MediaFile.Trim('/')}";
+        _mediaSize = new() { Width = Width, Height = Height, Scale = Scale };
+        if (MinimumFlexWidth is not null)
+        {
+            _flexSizer = new() { MinimumFlexWidth = MinimumFlexWidth.Value };
+            _mediaSize.AltFlexScale = AltFlexScale;
+        };
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (!firstRender)
+        {
+            return;
+        }
+
+        var viewWidth = await JS.GetViewWidth();
+        var scale = _mediaSize.Scale;
+
+        if (_flexSizer is not null && _mediaSize.AltFlexScale is not null)
+        {
+            if (viewWidth < _flexSizer.MinimumFlexWidth)
+            {
+                scale = _mediaSize.AltFlexScale.Value;
+            }
+        }
+
+        var maxWidth = scale * viewWidth; 
+        var ratio = maxWidth / _mediaSize.Width;
+        _width = Convert.ToInt32(_mediaSize.Width * ratio);
+        _height = Convert.ToInt32(_mediaSize.Height * ratio);
+        StateHasChanged();
+    }
+
+}

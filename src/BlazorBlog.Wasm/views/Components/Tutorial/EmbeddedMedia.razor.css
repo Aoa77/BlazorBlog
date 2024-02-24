@@ -1,0 +1,17 @@
+﻿embedded-media.media-video > a {
+    display: none;
+}
+
+embedded-media.media-image > video {
+    display: none;
+}
+
+embedded-media.media-image > a {
+    border-color: #005500;
+    border-width: 0.0625rem;
+    opacity: 1;
+}
+
+    embedded-media.media-image > a:hover {
+        border-color: #00ff00;
+    }

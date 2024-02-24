@@ -1,15 +1,13 @@
 ﻿@*
-    ArticlePage.razor  [PAGE]
+    ArticlePage.razor
 *@
 @page "/blog/{Key}"
 
-
  <DynamicComponent Type="@_data.GetType()" />
-
 
 @code
 {
-    private ArticleData _data => BlogManager.Articles[Key];
+    private BlogArticle _data => BlogManager.Articles[Key];
 
     [Parameter]
     public required string Key { get; set; }

@@ -1,14 +1,14 @@
-﻿a.article {
+﻿feed-view > a {
     display: block;
     padding: 1.3rem 1rem .7rem 1rem;
 }
 
-    a.article > h1 {
+    feed-view > a > h2 {
         color: #ffffff;
         font-size: 1.2rem;
     }
 
-    a.article > time {
+    feed-view > a > time {
         color: #ffe4b5;
         display: block;
         font-size: 0.7rem;

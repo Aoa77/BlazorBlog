@@ -1,0 +1,45 @@
+﻿@*
+    <FlexBox /> is a custom component that wraps the <flex-box> element.
+*@
+@inherits ParentComponent
+@inject IJSRuntime JS
+
+<flex-box style="display: @_display;" data-flex="@_flexSizer?.ToJson()">
+    @ChildContent
+</flex-box>
+
+@code {
+    private string _display = FlexSizer.DisplayStyle.flex;
+    private FlexSizer? _flexSizer = null!;
+
+    [Parameter] public int? MinimumFlexWidth { get; set; }
+
+    protected override void OnInitialized()
+    {
+        if (MinimumFlexWidth is not null)
+        {
+            _flexSizer = new() { MinimumFlexWidth = MinimumFlexWidth.Value };
+        }
+        Console.WriteLine(_flexSizer.ToJson());
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (!firstRender)
+        {
+            return;
+        }
+        if (_flexSizer is null)
+        {
+            return;
+        }
+        var viewWidth = await JS.GetViewWidth();
+        Console.WriteLine($"View Width: {viewWidth}");
+        if (viewWidth < _flexSizer.MinimumFlexWidth)
+        {
+            _display = FlexSizer.DisplayStyle.block;
+            StateHasChanged();
+            Console.WriteLine($"Display: {_display}");
+        }
+    }
+}

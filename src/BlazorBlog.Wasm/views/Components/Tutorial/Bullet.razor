@@ -1,8 +1,7 @@
 ﻿@*
-    <Bullet Data="[ArticleData]">
-        <!-- ChildContent [RenderFragment] -->
-    </Bullet>
+    <Bullet /> is a component that wraps a bullet point and its content.
 *@
+@inherits ParentComponent
 
 <bullet-container class="@CssClass">
     <bullet-wrap>
@@ -16,9 +15,6 @@
 </bullet-container>
 
 @code {
-    [Parameter]
-    public required RenderFragment ChildContent { get; set; }
-
     [Parameter]
     public string? CssClass { get; set; }
 }

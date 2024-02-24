@@ -23,12 +23,29 @@ class BlazorBlogJs {
     resize() {
         this.#viewWidth = 0;
         const viewWidth = this.getViewWidth();
-        document.querySelectorAll(`[data-resize]`).forEach(el => {
-            const resizeData = JSON.parse(el.getAttribute(`data-resize`));
-            const maxWidth = resizeData.MaxWidthViewRatio * viewWidth
-            const ratio = maxWidth / resizeData.Width;
-            el.setAttribute(`width`, Math.round(resizeData.Width * ratio));
-            el.setAttribute(`height`, Math.round(resizeData.Height * ratio));
+
+        document.querySelectorAll(`[data-size]`).forEach(el => {
+
+            const mediaSize = JSON.parse(el.getAttribute(`data-size`));
+            const flexSizer = JSON.parse(el.getAttribute(`data-flex`));
+
+            let scale = mediaSize.Scale;
+            if (flexSizer && mediaSize.AltFlexScale) {
+                if (viewWidth < flexSizer.MinimumFlexWidth) {
+                    scale = mediaSize.AltFlexScale;
+                }
+            }
+
+            const maxWidth = scale * viewWidth
+            const ratio = maxWidth / mediaSize.Width;
+            el.setAttribute(`width`, Math.round(mediaSize.Width * ratio));
+            el.setAttribute(`height`, Math.round(mediaSize.Height * ratio));
+        });
+
+        document.querySelectorAll(`flex-box[data-flex]`).forEach(el => {
+            const flexSizer = JSON.parse(el.getAttribute(`data-flex`));
+            el.style.display = (viewWidth < flexSizer.MinimumFlexWidth)
+                ? "block" : "flex";
         });
     }
 

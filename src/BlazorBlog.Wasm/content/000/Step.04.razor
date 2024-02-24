@@ -1,8 +1,10 @@
-<BulletStep Number="@Data.NextBullet()">
+@inherits BlogArticleChild
+
+<StepContainer Number="@Article.NextBullet()">
     <Title>
         Confirm that the new project templates are available.
     </Title>
-    <Content>
+    <ChildContent>
         <Bullet>
             Launch Visual Studio 2022.
         </Bullet>
@@ -11,14 +13,13 @@
         </Bullet>
         <Bullet>
             Use the <b>Search for templates</b> input to confirm the availability of new project templates for Angular, React, and Vue.
-            <ImagePreview Article=@Data
-                          ImageFile="vs2022-new-project-01.gif"
-                          Size=(931,720,0.7) />
-        </Bullet>
-    </Content>
-</BulletStep>
 
-@code {
-    [Parameter]
-    public required ArticleData Data { get; set; }
-}
+            <EmbeddedMedia Article="@Article"
+                           MediaFile="vs2022-new-project-01.gif"
+                           Width="931"
+                           Height="720"
+                           Scale="0.7" />
+        </Bullet>
+    </ChildContent>
+</StepContainer>
+

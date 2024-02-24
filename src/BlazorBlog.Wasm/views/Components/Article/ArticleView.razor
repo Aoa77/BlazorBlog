@@ -1,0 +1,17 @@
+﻿@*
+    <ArticleView /> is a component that displays a blog article with a title, date, and content.
+*@
+@inherits BlogArticleChild
+
+<article>
+    <time class="font-c64 scan-0">
+        @Article.PostDateFmt
+    </time>
+    <h1 class="font-play-regular">
+        @Article.Title
+    </h1>
+    <section class="font-roboto-regular">
+        @ChildContent
+    </section>
+</article>
+

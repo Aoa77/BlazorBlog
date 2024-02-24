@@ -1,0 +1,15 @@
+﻿@*
+    <FeedView /> is a component that displays a single article in a feed.
+*@
+@inherits BlogArticleChild
+<feed-view>
+    <a href="@Article.ArticlePath">
+        <h2 class="font-roboto-regular">
+            @Article.Title
+        </h2>
+        <time class="font-play-bold">
+            @Article.PostDateFmt
+        </time>
+    </a>
+</feed-view>
+
