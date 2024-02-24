@@ -2,7 +2,7 @@
     --embedded_media_image_link_border: 0.24rem;
     --h1_background: #402262;
     --header_base_height: 3.00rem;
-    --header_bottom_border_height: 0.67rem;
+    --header_bottom_border_height: 1rem;
     --header_total_height: calc(var(--header_base_height) + var(--header_bottom_border_height));
     --link_opacity: 0.70;
     --max_width: 64rem;

@@ -4,7 +4,7 @@
     font-size: 2rem;
     padding: 1rem;
     border-color: var(--dark_purple);
-    border-width: 2rem 0;
+    border-width: 0 0 2rem 0;
 }
 
 article > time {

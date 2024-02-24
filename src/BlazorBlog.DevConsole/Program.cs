@@ -11,7 +11,7 @@ internal static class Program
     {
         var path = GetCallerFileInfo().DirectoryName!;
         path = path.Replace(nameof(DevConsole), "Wasm");
-        await DotnetRun(path, "watch");//, "run", "--non-interactive");
+        await DotnetRun(path, "watch");
     }
 
     private static FileInfo GetCallerFileInfo([CallerFilePath] string path = "")
