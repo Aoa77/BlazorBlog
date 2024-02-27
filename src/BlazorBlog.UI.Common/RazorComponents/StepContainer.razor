@@ -1,0 +1,34 @@
+﻿@*
+    <StepContainer>
+
+    </StepContainer>
+*@
+@inherits StepContainerBase
+
+<step-stripe class="@OddOrEven">
+
+    @if (Number == 1)
+    {
+        <step-spacer-half>&nbsp;</step-spacer-half>
+    }
+    else
+    {
+        <step-spacer>&nbsp;</step-spacer>
+    }
+
+    <step-container>
+        <step-wrap>
+            <step-num class="font-play-bold">
+                <span class="@LabelCssClass">
+                    @Number
+                </span>
+            </step-num>
+        </step-wrap>
+        <step-title class="font-play-regular">@Title</step-title>
+    </step-container>
+
+    <content-fragment>
+        @ChildContent
+    </content-fragment>
+</step-stripe>
+

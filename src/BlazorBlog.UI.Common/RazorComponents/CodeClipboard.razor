@@ -1,0 +1,10 @@
+﻿@*
+    <CodeClipboard />
+*@
+@inherits CodeClipboardBase
+
+<code 
+    class="@CssClass"
+    @onclick="(async e => await ClipboardService.WriteTextAsync(Text))">
+    @Text
+</code>

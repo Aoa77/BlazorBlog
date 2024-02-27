@@ -1,0 +1,31 @@
+﻿    <intro-text>
+        <p>
+            GitHub template repositories can make life easier when starting new projects.
+        </p>
+        <p>
+            In this tutorial, we'll use the <a target="_external" href="https://cli.github.com/">GitHub CLI</a> to create a new template repo for Visual Studio 2022 projets with a predefined directory structure and example placeholders for common configuration files.
+        </p>
+        <p>
+            To run the GitHub CLI, you'll need to use a Terminal program like
+            <a target="_external" href="https://gitforwindows.org/">Git BASH</a> or
+            <a target="_external" href="https://apps.microsoft.com/detail/9n0dx20hk701">
+                Windows Terminal</a>.
+        </p>
+    </intro-text>
+
+    <Step_01 Article="@this" />
+
+@* 
+@code {
+    public override void Setup()
+    {
+        base.InitializeParameters
+        ("001", new(2024, 1, 15),
+        "How to create a GitHub template repository for Visual Studio 2022 projects");
+    }
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        Setup();
+    }
+} *@

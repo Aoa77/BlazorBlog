@@ -1,0 +1,16 @@
+﻿@*
+    <Bullet /> is a component that wraps a bullet point and its content.
+*@
+@inherits BulletBase
+
+<bullet-container class="@CssClass">
+    <bullet-wrap>
+        <bullet-point />
+    </bullet-wrap>
+
+    <bullet-content>
+        @ChildContent
+    </bullet-content>
+
+</bullet-container>
+

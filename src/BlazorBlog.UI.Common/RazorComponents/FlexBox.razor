@@ -1,0 +1,13 @@
+﻿@*
+    <FlexBox>
+
+    </FlexBox>
+*@
+@inherits FlexBoxBase
+
+<flex-box class="@CssClass" 
+          style="display: @DisplayStyle;" 
+          data-flex="@this.ToJson()">
+    @ChildContent
+</flex-box>
+

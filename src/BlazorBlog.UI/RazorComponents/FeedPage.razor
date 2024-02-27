@@ -1,0 +1,13 @@
+﻿@*
+    FeedPage.razor
+*@
+@page "/"
+@inherits FeedPageBase
+
+@foreach (var id in PostIds)
+{
+    <div style="@StripeColor()">
+        <PostView Id="@id" />
+    </div>
+}
+

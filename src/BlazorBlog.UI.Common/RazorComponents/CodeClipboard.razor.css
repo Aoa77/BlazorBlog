@@ -1,0 +1,19 @@
+﻿code {
+    background-color:   var(--CodeDim_backColor);
+    color:              var(--CodeDim_textColor);
+    cursor:             pointer;
+    display:            block;
+    font-family:        monospace;
+    font-weight:        var(--CodeDim_weight);
+    margin:             1rem 0;
+    opacity:            var(--CodeDim_opacity);
+    padding:            .24rem .60rem .48rem .60rem;
+}
+
+    code:hover {
+        background-color:   var(--CodeBright_backColor);
+        color:              var(--CodeBright_textColor);
+        font-weight:        var(--CodeBright_weight);
+        opacity:            var(--CodeBright_opacity);
+    }
+

@@ -1,9 +1,0 @@
-﻿main {
-    background-color: var(--view_background);
-    padding-top: var(--header_total_height);
-}
-
-footer {
-    background-color: var(--view_background);
-    height: 99rem;
-}

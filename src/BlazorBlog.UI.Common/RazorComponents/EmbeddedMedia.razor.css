@@ -1,0 +1,25 @@
+﻿embedded-media > * {
+    background-color:   var(--MediaDim_borderColor);
+    border-color:       var(--MediaDim_borderColor);
+    border-width:       var(--Media_borderWidth);
+    display:            block;
+    margin:             0 1rem 1rem 0;
+    opacity:            1;
+}
+
+embedded-media > a:hover {
+    background-color:   var(--MediaBright_borderColor);
+    border-color:       var(--MediaBright_borderColor);
+}
+
+embedded-media > a > img {
+    display: block;
+}
+
+embedded-media.media-video > a {
+    display: none;
+}
+
+embedded-media.media-image > video {
+    display: none;
+}

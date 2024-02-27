@@ -1,0 +1,41 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <ServiceWorkerAssetsManifest>service-worker-assets.js</ServiceWorkerAssetsManifest>
+    <RootNamespace>$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
+    <SelfContained>true</SelfContained>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="engine\**" />
+    <Compile Remove="views\**" />
+    <Compile Remove="wwwroot\**" />
+    <Content Remove="engine\**" />
+    <Content Remove="views\**" />
+    <Content Remove="wwwroot\**" />
+    <EmbeddedResource Remove="engine\**" />
+    <EmbeddedResource Remove="views\**" />
+    <EmbeddedResource Remove="wwwroot\**" />
+    <None Remove="engine\**" />
+    <None Remove="views\**" />
+    <None Remove="wwwroot\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="8.0.1" PrivateAssets="all" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BlazorBlog.Pub\BlazorBlog.Pub.csproj" />
+    <ProjectReference Include="..\BlazorBlog.UI\BlazorBlog.UI.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ServiceWorker Include="wwwroot\service-worker.js" PublishedContent="wwwroot\service-worker.published.js" />
+  </ItemGroup>
+
+</Project>

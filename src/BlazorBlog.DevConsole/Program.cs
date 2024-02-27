@@ -1,29 +1,52 @@
-﻿using CliWrap.EventStream;
-using CliWrap;
-using System.Diagnostics;
-using System.Runtime.CompilerServices;
-
+﻿using System.Diagnostics;
 namespace BlazorBlog.DevConsole;
 
 internal static class Program
 {
-    private static async Task Main(string[] args)
+    private readonly static Paths Paths = new();
+
+    private static void Main(string[] args)
     {
-        var path = GetCallerFileInfo().DirectoryName!;
-        path = path.Replace(nameof(DevConsole), "Wasm");
-        await DotnetRun(path, "watch");
+        KillOrphans();
+
+        Paths.CleanTarget();
+        CopyWwwroot();
+        CopyContentResx();
+
+        DotnetRun("watch");
     }
 
-    private static FileInfo GetCallerFileInfo([CallerFilePath] string path = "")
-    {
-        return new(path);
-    }
-
-    private static async Task DotnetRun(string path, params string[] args)
+    internal static void KillOrphans()
     {
         KillAll("dotnet");
         KillAll("chrome");
 
+        void KillAll(string processName)
+        {
+            Console.WriteLine($"Killing all {processName} processes");
+            foreach (var process in Process.GetProcessesByName(processName))
+            {
+                process.Kill(true);
+            }
+        }
+    }
+    
+    internal static void CopyWwwroot()
+    {
+        CopyRecursive(Paths.Source_wwwroot, Paths.Target_wwwroot);
+    }
+
+    internal static void CopyContentResx()
+    {
+        foreach (var sourceDir in Paths.Source_resx)
+        {
+            var targetPostDir = Paths.Target_content.CreateSubdirectory(sourceDir.Parent!.Name);
+            CopyRecursive(sourceDir, targetPostDir);
+        }
+    }
+
+    internal static void DotnetRun(params string[] args)
+    {
         var p_info = new ProcessStartInfo
         {
             UseShellExecute = true,
@@ -31,44 +54,30 @@ internal static class Program
             WindowStyle = ProcessWindowStyle.Normal,
             FileName = @"dotnet",
             Arguments = "watch",
-            WorkingDirectory = path
+            WorkingDirectory = Paths.Target.FullName
         };
         Process.Start(p_info);
-
-        return;
-
-
-        Console.WriteLine($"Executing 'dotnet {string.Join(' ', args)}' in {path}");
-        var cmd = Cli.Wrap("dotnet")
-                     .WithArguments(args)
-                     .WithWorkingDirectory(path);
-
-        await foreach (var cmdEvent in cmd.ListenAsync())
-        {
-            switch (cmdEvent)
-            {
-                case StartedCommandEvent started:
-                    Console.WriteLine($"Process started; ID: {started.ProcessId}");
-                    break;
-                case StandardOutputCommandEvent stdOut:
-                    Console.WriteLine($"Out> {stdOut.Text}");
-                    break;
-                case StandardErrorCommandEvent stdErr:
-                    Console.WriteLine($"Err> {stdErr.Text}");
-                    break;
-                case ExitedCommandEvent exited:
-                    Console.WriteLine($"Process exited; Code: {exited.ExitCode}");
-                    break;
-            }
-        }
     }
 
-    private static void KillAll(string processName)
+
+    
+    private static void CopyFolderFiles(DirectoryInfo sourceDir, DirectoryInfo targetDir)
     {
-        Console.WriteLine($"Killing all {processName} processes");
-        foreach (var process in Process.GetProcessesByName(processName))
+        foreach (var file in sourceDir.GetFiles())
         {
-            process.Kill(true);
+            file.CopyTo(Path.Combine(targetDir.FullName, file.Name),
+                overwrite: false); // target files should not exist yet
+        }
+    }
+    private static void CopyRecursive(DirectoryInfo source, DirectoryInfo target)
+    {
+        CopyFolderFiles(source, target);
+        var sourceDirs = source.GetDirectories("*", SearchOption.AllDirectories);
+        foreach (var sourceDir in sourceDirs)
+        {
+            var targetPath = sourceDir.FullName.Replace(source.FullName, "");
+            var targetDir = target.CreateSubdirectory(targetPath.TrimStart('\\'));
+            CopyFolderFiles(sourceDir, targetDir);
         }
     }
 }

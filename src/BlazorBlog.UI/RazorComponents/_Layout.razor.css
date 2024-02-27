@@ -1,0 +1,9 @@
+﻿main {
+    /*background-color: var(--view_background);*/
+    padding-top: 5rem;
+}
+
+footer {
+    /*background-color: var(--view_background);*/
+    height: 99rem;
+}
