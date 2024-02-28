@@ -1,16 +1,21 @@
+@using BlazorBlog.DataService
+@using BlazorBlog.UI.Constants
+@using BlazorBlog.UI.Components
+
 <StepContainer Number="3">
     <Title>
         Install the Node.js development workload.
     </Title>
     <ChildContent>
         <FlexBox MinimumFlexWidth="@DeviceWidths.iPhone678">
-
-            <EmbeddedMedia MediaFile        ="vs2022-installer-02.gif"
-                           Width            ="1858"
-                           Height           ="893"
-                           Scale            ="0.3"
-                           MinimumFlexWidth ="@DeviceWidths.iPhone678"
-                           AltFlexScale     ="0.7" />
+            
+            <EmbeddedMedia MediaFileMapper  = "BlogPost.ConvertToResourcePath"
+                           MediaFile        = "vs2022-installer-02.gif"
+                           Width            = "1858"
+                           Height           = "893"
+                           Scale            = "0.3"
+                           MinimumFlexWidth = "@DeviceWidths.iPhone678"
+                           AltFlexScale     = "0.7" />
 
             <BulletList>
                 <Bullet>

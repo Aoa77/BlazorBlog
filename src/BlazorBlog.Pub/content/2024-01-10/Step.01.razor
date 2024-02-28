@@ -1,3 +1,7 @@
+@using BlazorBlog.DataService
+@using BlazorBlog.UI.Components
+@using BlazorBlog.UI.Constants
+
 <StepContainer Number="1">
     <Title>
         Fire up the Visual Studio 2022 installer.
@@ -5,12 +9,13 @@
     <ChildContent>
         <FlexBox MinimumFlexWidth="@DeviceWidths.iPhone678">
 
-            <EmbeddedMedia MediaFile        ="vs2022-installer-00.png"
-                           Width            ="427"
-                           Height           ="122"
-                           Scale            ="0.3"
-                           MinimumFlexWidth ="@DeviceWidths.iPhone678"
-                           AltFlexScale     ="0.7" />
+            <EmbeddedMedia MediaFileMapper  = "BlogPost.ConvertToResourcePath"
+                           MediaFile        = "vs2022-installer-00.png"
+                           Width            = "427"
+                           Height           = "122"
+                           Scale            = "0.3"
+                           MinimumFlexWidth = "@DeviceWidths.iPhone678"
+                           AltFlexScale     = "0.7" />
 
             <BulletList>
                 <Bullet>

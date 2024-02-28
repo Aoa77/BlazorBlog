@@ -1,3 +1,7 @@
+@using BlazorBlog.DataService
+@using BlazorBlog.UI.Constants
+@using BlazorBlog.UI.Components
+
 <StepContainer Number="1">
     <Title>
         In a terminal, navigate to the directory where you want to store your project 
@@ -5,13 +9,14 @@
     </Title>
     <ChildContent>
         <FlexBox MinimumFlexWidth="@DeviceWidths.iPhone678">
-
-            <EmbeddedMedia MediaFile        ="step-01.mp4"
-                           Width            ="576"
-                           Height           ="450"
-                           Scale            ="0.3"
-                           MinimumFlexWidth ="@DeviceWidths.iPhone678"
-                           AltFlexScale     ="0.7" />
+            
+            <EmbeddedMedia MediaFileMapper  = "BlogPost.ConvertToResourcePath"
+                           MediaFile        = "step-01.mp4"
+                           Width            = "576"
+                           Height           = "450"
+                           Scale            = "0.3"
+                           MinimumFlexWidth = "@DeviceWidths.iPhone678"
+                           AltFlexScale     = "0.7" />
 
             <BulletList>
                 <Bullet>

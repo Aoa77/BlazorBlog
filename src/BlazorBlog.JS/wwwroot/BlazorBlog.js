@@ -28,6 +28,7 @@ class BlazorBlogJs {
         The convertPixelsToRem() function converts rem units to pixels.
     */
     convertRemToPixels(rem) {
+        console.debug(`convertRemToPixels(${rem})`);
         if (!rem) {
             throw new Error("The rem parameter is required.");
         }
@@ -106,8 +107,8 @@ class BlazorBlogJs {
             if (el.tagName === `IMG`) {
                 const borderRem = this.getRootVariable(`--Media_borderWidth`);
                 const borderPx = 2 * this.convertRemToPixels(borderRem);
-                width += borderPx;
-                height += borderPx;
+                width += borderPx;   // linkWidth
+                height += borderPx;  // linkHeight
                 el.parentElement.style.width = `${width}px`;
                 el.parentElement.style.height = `${height}px`;
             }

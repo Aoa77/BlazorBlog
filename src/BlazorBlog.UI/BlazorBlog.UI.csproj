@@ -12,13 +12,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BlazorBlog.DataService\BlazorBlog.DataService.csproj" />
-    <ProjectReference Include="..\BlazorBlog.UI.Common\BlazorBlog.UI.Common.csproj" />
+    <PackageReference Include="CurrieTechnologies.Razor.Clipboard" Version="1.6.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.2" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Interfaces\" />
-    <Folder Include="Constants\" />
+    <ProjectReference Include="..\BlazorBlog.JS\BlazorBlog.JS.csproj" />
   </ItemGroup>
 
 </Project>

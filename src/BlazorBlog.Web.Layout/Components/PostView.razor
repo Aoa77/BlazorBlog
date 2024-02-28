@@ -1,0 +1,16 @@
+﻿@*
+    <PostView />
+*@
+@inherits PostViewBase
+
+<post-view>
+    <a href="@BlogPost.BlogPath">
+        <h2 class="font-roboto-regular">
+            @BlogPost.Title
+        </h2>
+        <time class="font-play-bold">
+            @BlogPost.DisplayDate
+        </time>
+    </a>
+</post-view>
+

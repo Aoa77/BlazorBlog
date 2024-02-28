@@ -40,7 +40,7 @@
     --Trace_borderWidth:        0.0625rem;
     --Trace_textColor:          var(--transparent);
 
-    --Media_borderWidth:        calc(var(--Trace_borderWidth) * 3);
+    --Media_borderWidth:        var(--Trace_borderWidth);
     --MediaDim_borderColor:        #000055;
     --MediaBright_borderColor:        #0000ff;
 

@@ -1,0 +1,28 @@
+﻿@using BlazorBlog.JS
+@*
+    <EmbeddedMedia />
+*@
+@inherits EmbeddedMediaBase
+
+<embedded-media class="@CssClass">
+
+    <a target="_image"
+       href="@MediaFile"
+       style="@LinkStyle">
+
+        <img src="@MediaFile"
+             width="@DisplayWidth"
+             height="@DisplayHeight"
+             data-json="@JsonData" />
+    </a>
+
+    <video width="@DisplayWidth"
+           height="@DisplayHeight"
+           data-json="@JsonData"
+           controls>
+
+        <source src="@MediaFile" type="video/mp4" />
+        Your browser does not support the video tag.
+    </video>
+</embedded-media>
+

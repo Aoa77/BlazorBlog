@@ -31,7 +31,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BlazorBlog.Pub\BlazorBlog.Pub.csproj" />
-    <ProjectReference Include="..\BlazorBlog.UI\BlazorBlog.UI.csproj" />
+    <ProjectReference Include="..\BlazorBlog.Web.Layout\BlazorBlog.Web.Layout.csproj" />
   </ItemGroup>
 
   <ItemGroup>
